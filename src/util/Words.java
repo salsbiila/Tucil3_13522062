@@ -47,4 +47,11 @@ public class Words {
         }
         return true;
     }
+
+    public static boolean isInputValid(String word) {
+        if (word == null || word.isEmpty()) {
+            throw new IllegalArgumentException("Input cannot be empty!");
+        }
+        return true;
+    }
 }

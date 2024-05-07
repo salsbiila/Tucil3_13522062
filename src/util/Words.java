@@ -51,6 +51,10 @@ public class Words {
     public static boolean isInputValid(String word) {
         if (word == null || word.isEmpty()) {
             throw new IllegalArgumentException("Input cannot be empty!");
+        } else if (word.length() < 2) {
+            throw new IllegalArgumentException("Input must be at least 2 characters long!");
+        } else if (word.length() > 8) {
+            throw new IllegalArgumentException("Input must be at most 8 characters long!");
         }
         return true;
     }

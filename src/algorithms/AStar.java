@@ -9,7 +9,7 @@ public class AStar {
         } else {
             Map<String, List<String>> parentMap = new HashMap<>();
             Map<String, Integer> distances = new HashMap<>();
-            PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(Node::getTotalCost));
+            PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(Node::getTotalCost).thenComparing(Node::getWord));
 
             distances.put(startWord, 0);
             pq.offer(new Node(startWord, 0, Words.countCharDifference(startWord, targetWord)));

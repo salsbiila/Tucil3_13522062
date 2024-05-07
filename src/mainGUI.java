@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import util.*;
 import algorithms.*;
 
-public class mainGUI {
+public class MainGUI {
     private static Map<Integer, List<String>> wordMap;
     private static JTextField startWordField, targetWordField;
     private static JFrame frame;
@@ -19,10 +19,10 @@ public class mainGUI {
     private static BufferedImage backgroundImage;
 
     public static void main(String[] args) {
-        wordMap = Words.createWordMap("util/words.txt");
+        wordMap = Words.createWordMap("../src/util/words.txt");
 
         try {
-            backgroundImage = ImageIO.read(testGUI.class.getResourceAsStream("Frame 2.png")); // Load the image
+            backgroundImage = ImageIO.read(MainGUI.class.getResourceAsStream("Frame_2.png")); // Load the image
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class mainGUI {
     }
 
     private static void createAndShowGUI() {
-        frame = new JFrame("Word Ladder solver");
+        frame = new JFrame("Word Ladder Solver");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
         JPanel mainPanel = new JPanel(new BorderLayout()) {
@@ -194,7 +194,19 @@ public class mainGUI {
                 result.append(path).append("\n");
             }
             result.append("Time taken: ").append(Duration.ofNanos(endTime - startTime).toMillis()).append("ms");
-            JOptionPane.showMessageDialog(frame, result.toString(), "Result", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Create a JTextArea to hold the result
+            JTextArea textArea = new JTextArea(result.toString());
+            textArea.setEditable(false);
+            textArea.setLineWrap(true);
+            textArea.setWrapStyleWord(true);
+            
+            // Wrap the JTextArea in a JScrollPane to enable scrolling
+            JScrollPane scrollPane = new JScrollPane(textArea);
+            scrollPane.setPreferredSize(new Dimension(500, 300)); // Set the maximum size here
+            
+            // Show the JScrollPane in the option pane
+            JOptionPane.showMessageDialog(frame, scrollPane, "Result", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }

@@ -9,10 +9,10 @@ public class UCS {
         } else {
             Map<String, List<String>> parentMap = new HashMap<>();
             Map<String, Integer> distances = new HashMap<>();
-            PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(Node::getCost));
+            PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(Node::getCost).thenComparing(Node::getWord));
 
             distances.put(startWord, 0);
-            pq.offer(new Node(startWord, 0, Words.countCharDifference(startWord, targetWord)));
+            pq.offer(new Node(startWord, 0, 0));
 
             int visited = 0;
             while (!pq.isEmpty()) {
@@ -32,7 +32,7 @@ public class UCS {
                     if (!distances.containsKey(child) || newCost < distances.get(child)) {
                         distances.put(child, newCost);
                         parentMap.put(child, new ArrayList<>());
-                        pq.offer(new Node(child, newCost, Words.countCharDifference(child, targetWord)));
+                        pq.offer(new Node(child, newCost, 0));
                     }
 
                     if (newCost == distances.get(child)) {

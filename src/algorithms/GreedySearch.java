@@ -2,8 +2,6 @@ package algorithms;
 import java.util.*;
 import util.*;
 
-import util.Words;
-
 public class GreedySearch {
     public static Result searchGreedySearch(String startWord, String targetWord, List<String> wordList) {
         if (startWord.equals(targetWord)) {
@@ -11,7 +9,7 @@ public class GreedySearch {
         } else {
             Map<String, List<String>> parentMap = new HashMap<>();
             Map<String, Integer> distances = new HashMap<>();
-            PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(Node::getHeuristic));
+            PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(Node::getHeuristic).thenComparing(Node::getWord));
 
             distances.put(startWord, 0);
             pq.offer(new Node(startWord, 0, Words.countCharDifference(startWord, targetWord)));

@@ -7,8 +7,6 @@ Word Ladder Solver adalah sebuah program sederhana yang dibuat untuk memecahkan 
 
 
 ## Struktur Program
-.
-└── Tucil3_13522062/
     ├── bin
     ├── doc
     ├── src/
